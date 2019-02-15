@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper .style1{
+            background: orange;
+        }
+        .wrapper .style1 li{
+            color:red
+        }
+        .wrapper .style2{
+            background: green;
+        }
+        .wrapper .style2 li{
+            color: blue;
+        }
+        .wrapper.active .style1{
+            background: yellow;
+        }
+        .wrapper.active .style1 li{
+            color:deeppink
+        }
+        .wrapper.active .style2{
+            background: saddlebrown;
+        }
+        .wrapper.active .style2 li{
+            color: darkcyan
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="style1">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <ul class="style2">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+        // html() 设置或返回表格行的开始和结束标签之间的 HTML。
+        // 正常情况下,jquery都是操作一堆,但是在html中是个例外  **
+        // 取值  取值的时候只取一个
+        // console.log($('ul li').html()) 
+        // 赋值 赋值的时候，会将ul中的所有都覆盖掉
+        // $('ul').html('<li style = "color:red">a</li>')
+        // 赋值可以使用函数方法**
+        // var arrName = ['张凡', '张少轩', '武川', '黑娃', '泡泡'];
+        // $('ul li').html(function (index, ele) {
+        //     return '<p style = "color:red"> ' + arrName[index] + '</p>'
+        // })
+        // 赋值的时候，会将所有的都赋上值
+        // $('ul li').html('9');
+
+        // text() 等同于原生中的innertext() 取出从起始位置到终止位置的内容,但它去除Html标签
+        // console.log( $('ul li').text());
+        // $('ul li').text(9)
+        // $('ul li').text(function (index,ele) { 
+        //     return arrName[index]
+        // })
+        
+        // size() 等同于length，求长度
+        // console.log( $('ul li').size());
+        // console.log( $('ul li').length);
+            
+        // addClass  
+        // 原生中className+=... 
+        //console.log(demo.className) 属性设置或返回元素的 class 属性。
+        //console.log(demo.className = 'active3')(这个设置的时候会将以前都覆盖掉)
+        // $('.demo').addClass(function (index,ele) {  
+        //     return 'active'+index+''
+        // })
+        
+        // removeClass  移除类名
+        // $('div').eq(0).removeClass('demo'); 写参数，移除参数中的，不写参数，删除所有的,参数可以多写，有就删掉，没有忽略
+        // $('div').removeClass(function (index,ele) {
+        //     if(index % 2 == 0){
+        //         return "demo";
+        //     }
+        //     return '';
+        // })
+
+        // hasClass判断前面选中的有没有这个类名，返回Boolean值,一旦里面有一个,就会返回true
+        // console.log( $('.demo').hasClass('active'));
+
+        // 小练习 切换class
+        // $('.demo').click(function (e) {
+            // $('.demo').removeClass('active');
+            // $(this).addClass('active')
+
+            //css
+            // $('.demo').css({backgroundColor:'orange'})
+            // $(this).css({backgroundColor:'green'})
+            // 放在css中冗余度高，复用性叉，而且没有效率
+            // css文件允许缓存到本地，但是js文件不行,这样写在css中就不用每次请求都得下载了，
+            // 所以写在css中对于网站性能用户体验有一定的好处。
+            // 代码整洁，便于维护，减少带宽使用，复用性高，更好的支持webpack的使用
+        // })
+        // 状态的更改
+        // $('.wrapper').click(function (ele,index) {
+        //     if($(this).hasClass('active')){
+        //         $('.wrapper').removeClass('active');
+        //     }else{
+        //         $(this).addClass('active');
+        //     } 
+        // })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <input class="demo" type="checkbox" checked>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+    // css()方法   方法设置或返回被选元素的一个或多个样式属性。
+    // 赋值
+    // $('.wrapper ul li')
+    //     .css({width:'100px',height:'100px',border:'1px solid #000'})
+    //     .css({width:'+=100px',height:50,border:'1px solid #000'})
+    // 取值
+    // 当我们没有给外部元素设置宽度的高度的时候，也可以使用.css('width')来获取某一时刻的宽度属性，同样其他属性也可以
+    // console.log( $('.wrapper').css('background'));
+
+    // attr()
+    // 取值
+    // console.log($('.wrapper').attr('class'));
+    // 赋值
+    // $('.wrapper').attr('id','test1');
+    // 注意：selected checked disabled 这类属性，只要有属性，即便是没有值，也会利用attr进行选中 
+    // 所以查看他们是否被选中，不用attr来判断  用prop
+    // console.log($('.demo').attr('checked'))
+
+    // prop  针对于js原生dom对象来操作
+    // 所以特性才能映射，非特性不能映射  也就是说只能选择特性。不能选择自定义属性
+    // 取值
+    // console.log( $('.wrapper').prop('class'));
+    // console.log( $('.demo').prop('checked'));
+    // 赋值  同样赋值的时候，也只能针对特性，而且会将以前的值覆盖掉
+    // $('.wrapper').prop('class','active') 
+
+    // 想给标签设置自定义属性的时候，使用attr
+    // 给dom对象自己身上加一些属性的时候，使用prop
+
+    </script>
+</body>
+</html>

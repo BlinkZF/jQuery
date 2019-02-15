@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!---->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="demo">1</div>
+        <div class="demo">2</div>
+        <div class="demo">3</div>
+    </div>
+
+    <script src="../jquery.js"></script>
+    <!-- <script src="./myjQuery.js"></script> -->
+    <script>
+        // get获得原生的dom元素
+        //当里面填null undefined  返回[dom,dom,dom]
+        // console.log( $('.demo').get(-1)) //<div class="demo">1</div>
+
+        // eq() jquery链式操作可以实现游标式操作，可前可后 操作起来更灵活
+        // 返回jquery对象，这里的参数必须写，不写返回的空对象
+        // console.log( $('.demo').eq());
+
+        // find() 进行二次选择
+        // find() 可传入参数: css selector jquery unique selector dom 和$()中的基本都是一样的
+        // $('.wrapper')
+        //     .css({position:'relative'})
+        //         .find('ul')
+        //             .css({listStyle:'none'})
+        //                 .find('li')
+        //                     .css({color:'red'})
+        // 通过上面的步骤就可以看出来，find()二次查找是在前一个的基础上来查找下面的dom元素
+        // 每个对象中都有一个prevObject  记录的是前一个jQuery对象
+
+        // filter() 过滤作用  
+        // 注意：filter主要是对前一个选中的进行限制，而不是说既选择又限制，所以filter的参数里面写的都是筛选条件
+        // $(".wrapper ul")
+        //     .find('li')
+        //         // .filter('.demo')
+        //         .filter(':even')
+        //             .css({color:'red'})
+        //参数为函数的时候：
+        // $('.wrapper ul li').filter(function (index, ele) {
+        // 在jQuery中一般参数中是函数的时候，得到的ele都是原生的dom，这样就不能直接使用jQuery中的方法，需要$(ele)
+        // console.log(index,ele,this);  //函数中的this和这里的ele是一个意思
+        // return index % 2 == 0  //这里返回true的时候，表示选中  false表示没选中
+        // }).css({color:'red'})
+
+        // not()与filter()相反。找到不符合条件的
+
+        // has()  选择li中有ul的元素 
+        // $('li').has('ul').css({backgroundColor:'green'})
+
+        // is() 返回的是Boolean值
+        // is 下面的例子。判断e.terget到底是不是li
+        // var flag =  $('ul').click(function (e) {
+        //     //这里的e.target是目标原对象
+        //     console.log(e)
+        //     if($(e.target).is('li')){
+        //         console.log($(e.target).text())
+        //     }else{
+        //         console.log($(this).text())
+        //     }
+        // })
+
+        // add() 集中操作  将多个dom集中到一起操作
+        // $('.wrapper')
+        //     .add('ul')
+        //         .css({color:'green'})
+        
+        // end() 回退操作
+        // $('.wrapper')
+        //     .css({position:'relative'})
+        //         .find('ul')
+        //             .css({color:'red'})
+        //         .end()
+        //         .find('ul')
+        //             .css({color:'green'})
+
+    </script>
+</body>
+
+</html>
