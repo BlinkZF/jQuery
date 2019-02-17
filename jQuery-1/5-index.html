@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action='./' method='GET'>
+        <h3>选择你喜欢的明星</h3>
+        <select name='star'>
+            <option value="s">詹姆斯</option>
+            <option value="a">库里</option>
+            <option value="b">奥拉迪波</option>
+        <select>
+        <h3>用一句换简单介绍你喜欢的明星</h3>
+        <input type="text" name="easy" value = "cst">
+        <h3></h3>
+        <input type="checkbox" name="special" value="three">
+        <input type="checkbox" name="special" value="org">
+        <input type="checkbox" name="special" value="strong">
+        <h3>具体描述该明星的技术特点</h3>
+        <textarea name="des" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="login">
+        
+    </form>
+    <div></div>
+    <script src="../jquery.js"></script>
+    <script>
+        // .val()获取表单相关元素的value值,
+        // 注意,当选中一堆的时候，得到的也是第一个值，而不是获取所有选中的
+        // console.log($('input[type= "checkbox"]').val())
+
+        // 获取form表单中所有的value值 serialize()方法 将表单中=所有能显示来的值都串成一个串，输出出来
+        // console.log($('form').serialize())
+
+        // serializeArray() 将所有的值以json数组的形式输出出来
+        // console.log($('form').serializeArray())
+
+        // .val()赋值：
+        // $('input[type= "checkbox"]').val(function(index,oldvalue){
+        //     // 这里的参数中返回了索引值和老的value值
+        //     console.log(oldvalue);
+        // })
+
+
+        // $('div').val('张凡')
+        // 主要赋值的时候，只能赋值给有value属性的表单元素，没有value属性的是不能赋值的(eg:div)
+        // 类似于input之类的，设置之后就能显示出来，这是因为表单元素与value本身就是映射关系，当你设置value值之后，就能显示出来，
+        // 但是div不行,当你给div标签强行设置value属性的时候,这个属性不在控制台显示,也不会在页面上显示,但是当在控制台使用.val()方法却可以拿到
+
+        // 注意，当你给input设置值的之后，在页面上显示变化了，但是在控制台的代码中，显示的还是以前默认的值,或者是以前没有设置值，控制台是不显示值的
+        // 但是获取的时候还是我们设置的值，也就是说，这里没有相对的映射展示关系
+        $('input').eq(0).val('zhangfan')
+    </script>
+</body>
+
+</html>

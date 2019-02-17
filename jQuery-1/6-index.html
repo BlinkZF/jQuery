@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        all：<input type="checkbox" />
+        <h1>吃货清单</h1>
+        all：<input type="checkbox" />
+        <h2>水果</h2>
+        全选：<input type="checkbox" />
+        banana：<input type="checkbox" />
+        apple：<input type="checkbox" />
+        orange：<input type="checkbox" />
+
+        <h2>蔬菜</h2>
+        全选：<input type="checkbox" />
+        tomato：<input type="checkbox" />
+        egg：<input type="checkbox" />
+        potao：<input type="checkbox" />
+        <h2></h2>
+        <h1>明星清单</h1>
+        all：<input type="checkbox" />
+        <h2>nba</h2>
+        全选：<input type="checkbox" />
+        Rose：<input type="checkbox" />
+        Curry：<input type="checkbox" />
+        James：<input type="checkbox" />
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+        // 小练习
+        $('input[type = "checkbox"]').eq(0).click(function(){
+            if($(this).prop('checked')){
+                $(this).nextAll('input[type = "checkbox"]').prop('checked',true);
+            }else{
+                $(this).nextAll('input[type = "checkbox"]').prop('checked',false);
+            }
+        })
+        $('h1').next().click(function(){
+            console.log(this)
+            if($(this).prop('checked')){
+                $(this).nextUntil('h1','input[type = "checkbox"]').prop('checked',true);
+            }else{
+                $(this).nextUntil('h1','input[type = "checkbox"]').prop('checked',false);
+            }
+        })
+        $('h2').next().click(function(){
+            console.log(this)
+            if($(this).prop('checked')){
+                $(this).nextUntil('h2','input[type = "checkbox"]').prop('checked',true);
+            }else{
+                $(this).nextUntil('h2','input[type = "checkbox"]').prop('checked',false);
+            }
+        })
+
+
+        //next() 获取当前选中元素的下一个兄弟元素
+        // $('button').click(function(){
+        //     $(this).next('span').css({color:'red',fontSize:'20px'});
+            //next括号中可以传递一个参数，相当于一个限制条件，
+            //例如上面这个，只有当下一个元素是span标签的时候才会执行(选中).css中的代码
+        // })
+
+        // prev 获取当前选中元素的上一个兄弟节点
+        // $('button').click(function(){
+        //     $(this).prev().css({fontSize:'30px',color:'red'})
+            // 同样和next一样，prev括号中也能传递参数，相当于一个限制条件
+        // })
+
+        // $('input[type = "checkbox"]').click(function(){
+        //     if($(this).prop('checked')){
+        //         $(this).nextAll('input[type = "checkbox"]').prop('checked',true);
+        //     }else{
+        //         $(this).nextAll('input[type = "checkbox"]').prop('checked',false);
+        //     }
+        // })
+
+        // nextUntil 向后到...为止
+        // prevUntil 向前到...为止
+        // $('input[type = "checkbox"]').click(function(){
+        //     if($(this).prop('checked')){
+        //         $(this).nextUntil('h1','input[type = "checkbox"]').prop('checked',true);
+        //         // 注意：nextUntil()括号中可以有两个参数，两个参数都可以是限定条件
+        //     }else{
+        //         $(this).nextUntil('h1').prop('checked',false);
+        //     }
+        // })
+
+        
+    </script>
+</body>
+</html>
