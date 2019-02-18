@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="demo" style="width:100px;height:100px" data-zd='zhangfan'></div>
+    <script src="../jquery.js"></script>
+    <script>
+    // .wrap() 给标签添加父级  传递的参数可以是字符串原生dom也可以是jQuery对象
+    // 当传递的参数是已有的标签元素的时候，会直接将元素赋值过去
+    // 同样这里要注意的是,当你选中好几个dom的时候，给他设置父级，会给所有的选中dom都设置上父级。这个是jquery的源码循环特点
+    // $('.demo').wrap($('.box1'));
+    // $('.demo ul li').wrap(function (index) {  
+    //     return '<div class = wrapper'+index+'></div>'
+    // });
+
+    // wrapInner() 给选中元素内部标签设置父级
+    // $('.demo').wrapInner('<div class = "wrapper222"></div>')
+    // $('.demo ul li').wrapInner(function (index) {
+    //     return '<div class = "wrapper'+index+'"></div>'
+    //   })
+    
+    // wrapAll() 给选中的元素增加一个统一的父级
+    // 注意：使用wrapAll的时候，是以第一个选中的为基准，将后面能选择到的都迁移到增加的这个父级中 所有一定要在同级中写
+    // $('.demo').wrapAll('<div/>')
+    //   $('.wrapper .section .item').wrapAll('<div/>')
+    
+    // unwrap 解绑(取消)直接父级  当删除到直接父级是body的时候就删除不了了
+    // $('.demo').unwrap();
+    
+    // clone() 克隆dom元素 同时可以将标签上的天生属性和自定义属性都能克隆过来,但是事件不能被克隆
+    // $('.demo').clone().appendTo($('body'));
+    // $('.demo').click(function () {  
+    //    console.log(0)
+    // })
+    // $('.demo').clone().appendTo($('body'));
+
+    // $('.demo').click(function () {  
+    //    console.log(0)
+    // })
+    // $('.demo').clone(true).appendTo($('body')); //当在clone()括号中传递参数true的时候，就能克隆事件了
+
+    // 但是注意不是所有的都可以被克隆
+    // prop()底层是操作 js dom对象
+    // $('.demo').prop('data-log','111')
+    // console.log($('.demo').clone(true).prop('data-log')) //undefined
+
+    //给dom对象中放值，给标签中放值  让dom对象存一些信息，一些状态  这种方式克隆不出来
+
+    // jQuery中的data方法  目的是让jQuery中的dom对象存状态存数据
+    // 在clone()括号中传true 能将data中的东西拷贝出来，但是将prop的东西拷贝不出来
+    
+    // $('.demo').data('data-C','zf');//这样情况下的存值，是不展示在dom行间的，但是确实赋值了，也确实能获取  这是无法映射数值造成的
+    // $('.demo').data({ //也可以存json格式的数据
+    //     name:'张凡',
+    //     age:'18',
+    //     sex:true
+    // })
+    // .data()这种方法，存什么类型的值，取出来的就是什么类型的值 
+    // 注意：当我们在行间写上data-zd这个属性名的时候  使用.data('zd')也是能获取到值的，
+    // 当自己写 ‘data-zd：YYY‘ 这类属性名称的---这个jQuery会在内部自己解析的，获取的时候写zd就能获取到值  相当于在前面自动加上“data-” 
+    // 但是赋值的时候，就不会自动加上"data-"这个
+
+    // data这个方法的目的就是针对jquery dom对象存一些数据信息 但是这个数据不是存在dom对象中的，而是存在jQuery对象上的
+    // jQuery底层与dom有一定的映射关系，所以存储的数据天生就和dom形成了映射关系，这也就是为什么能拿到数据，却不展示到行间
+
+    // 在data源码中有cache对象作为缓存，让jQuery对象和dom  数据之间形成天生的映射关系
+    
+    
+    // 小练习
+    // var studentArr = [
+    //     {
+    //         name:"张凡",
+    //         age:20,
+    //         class:3
+    //     },
+    //     {
+    //         name:"陈叶",
+    //         age:20,
+    //         class:3
+    //     },
+    //     {
+    //         name:"张少轩",
+    //         age:20,
+    //         class:3
+    //     }
+    // ]
+    // // 克隆的用法
+    // var owrapper = $('table')
+    // studentArr.forEach(function (ele,index) {   //注意：使用forEach的时候ele在前，index在后
+    //     var Oclone = $('.temp').clone().removeClass('temp');
+    //     Oclone.find('td').eq(0).text(ele.name).next().text(ele.age).next().text(ele.class)
+    //     owrapper.append(Oclone);
+    // })
+
+
+
+    </script>
+</body>
+</html>

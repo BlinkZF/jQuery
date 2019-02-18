@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* .wrapper{
+            border: 1px solid #000;
+            width: 200px;
+            padding: 10px;
+        }
+        .wrapper div{
+            width: 200px;
+            height: 100px;
+        }
+        .wrapper .box1{
+            background: red;
+        }
+        .wrapper .box2{
+            background: orange;
+        }
+        .content{
+            width: 200px;
+            height: 50px;
+            background: blue;
+        } */
+
+        .wrapper{
+            width: 200px;
+            height: 200px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+        // A.insertBefore(B) 插入B在A的前面 这里传参穿的是字符串--css选择器格式
+        // $('.content').insertBefore('.box1');
+
+        // A.Before(B) 插入A在B的前面  这里传参传的是jQuery对象($())  如果只写字符串，直接将这个字符串文本放到前面
+        // $('.box1').before($('.content'));
+
+        // 这里对上面两种方法选择的时候--当操作完成之后,后续还要继续操作,就选择谁 就将谁放在前面
+    
+        //  A.insertAfter(B) 将A放置在B的后面 
+        // $('.content').insertAfter('.box1')
+
+        // A.after(B) 将B放置的A的后面
+        // $('.box1').after($('.content'))
+
+        // A.appendTo(B) 将A添加到B的最后位置 相当于原生js中appendchild
+        // $('.content').appendTo('.wrapper');
+
+        //A.append(B) 将B添加到A的最后位置 这里添加的参数也是$()(jquery对象)
+        // $('.wrapper').append($('.content'));
+
+        // A.prepend(B) 将B添加到A的第一个位置 参数是$()
+        // $('.wrapper').prepend($('.content'));
+
+        // A.prepend(B) 将A添加到B的第一个位置 参数是$()
+        // $('.content').prependTo('.wrapper');
+
+        // A.remove() 删除选中的dom元素A 删除之后吧dom上的事件也删除掉了 当再append这个dom的时候  事件没有了
+        // A.detach() 删除选中dom元素A 删除之后保留dom上的事件
+        // $('.wrapper').click(function () {
+        //     console.log(0);
+        // })
+         
+        // $(A).append(B)曾加A中的东西到B之中 这里A包括标签等等一系列的东西，多复杂都可以
+        // 通过这种方式可以凭空创建一个东西
+        // $('<div style = "color:red">1111</div>').appendTo($('body'));
+
+
+    </script>
+</body>
+</html>

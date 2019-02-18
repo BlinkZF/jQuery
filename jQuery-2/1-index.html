@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+   <ul>
+       <li>1</li>
+       <li>2</li>
+       <li>3</li>
+       <li>4</li>
+       <li>5</li>
+       <li>6</li>
+       <li>7</li>
+       <li>8</li>
+       <li>9</li>
+       <li>10</li>
+   </ul>
+    <script src="../jquery.js"></script>
+    <script>
+        // siblings()选择兄弟节点
+        // $('li')
+        //     .eq(4)
+        //         .css({color:'red'})
+        //             .siblings('span') //增加限制参数，过滤作用
+        //                 .css({backgroundColor:'green'})
+
+
+        // parent() 获取父级 返回的是直接父级  同样括号中也可以增加过滤参数
+
+        // $('button').click(function () {
+        //     $(this).parent();
+        // });
+
+        // var showArr = [{
+        //         name: 'nike',
+        //         id: '101'
+        //     },
+        //     {
+        //         name: 'adidas',
+        //         id: '102'
+        //     }
+        // ];
+        // var str = '';
+        // showArr.forEach(function (ele, index) {
+        //     str += '<div class="shop" data-id = "' + ele.id + '"><p>basketball=' + ele.name +'</p><button>add</button></div>'
+        // })
+        // $('.wrapper').html(str);
+        // var carArr = [];
+        // $('button').click(function () {  
+        //     carArr.push($(this).parent().attr('data-id'))
+        // })
+
+        // console.log($('button').parent())
+        // console.log($('button').parent('.shop'))  防止参数，实现精准过滤
+        
+        // closest() 获取离你最近的满足条件的父级  从他自己开始找，如果自己满足条件，那就选中自己
+        // console.log( $('button').eq(0).closest('ul').attr('data-id'))  
+
+        // offsetParent() 选择离他最近的有定位的父级
+        // console.log($('span').offsetParent());
+
+        // slice() 截取某几个dom元素  传递两个参数，开始点，结束点
+        console.log($('li').slice(1,4).css({background:'red'})   ) 
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .tp1 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tp1">
+            <p></p>
+            <span></span>
+            <button>add</button>
+        </div>
+        <p class="show">
+            <span>sum</span>
+            <span class="sum">0</span>
+        </p>
+    </div>
+
+    <script src="../jquery.js"></script>
+    <script>
+        // 当我们进行对应化操作的时候，多个dom结构上有数据 当我们操作的dom结构和数据具有很强的对应关系，
+        // 这个时候我们就将dom结构和数据绑定到一起
+
+        var shopArr = [{
+                name: 'james solider',
+                shopName: 'nike',
+                price: 110,
+                id: '1001'
+            },
+            {
+                name: 'Rose crazyLight',
+                shopName: 'adidas',
+                price: 90,
+                id: '2002'
+            },
+            {
+                name: 'curry one',
+                shopName: 'Under Armour',
+                price: 120,
+                id: '3003'
+            }
+        ];
+
+        //首先将dom模板display：none隐藏  然后通过克隆之后  插入值  再讲dom结构插入到指定的位置 
+
+        //本质上data()方法的底层是操作jQuery对象  底层有一个cache缓存(即存div 又存jQuery)，让div和jQuery对象形成映射关系
+        shopArr.forEach(function (ele, index) {
+            var oTp = $('.tp1').clone().removeClass('tp1');
+            // 当我们利用data()来传递值的时候，底层的cache就充当了一个数据存储管理的作用
+            oTp.data({
+                id: ele.id,
+                shopName: ele.name,
+                price: ele.price
+            }).find('p').text(ele.name).next().text(ele.price)
+            oTp.insertBefore($('.show'));
+        })
+
+        $('.wrapper button').click(function () {
+            //当我们给某个divjQuery对象上存值的时候，我们获取的时候，就直接选中div执行data()就能获取指定参数的data数据
+            $('.sum').text( +$('.sum').text() + $(this).parent().data('price') );
+            console.log($(this).parent().data('id'))
+        })
+
+
+
+        // 总结：存储信息的几种方式:标签上存储，标签的dom对象上  目的是让jQuery结构有自己的信息
+        // attr() 也可以让数据存在标签上 但是存取数据不推荐这种方法(
+            // 1：html 中属性太多过于臃肿，
+            // 2：attr()操作dom太频繁 很消耗性能
+        // prop和attr一样，也是操作don对象
+        // jquery 的data()是一种映射操作,相当于将数据放到一个映射池(cache)中，不需要使用dom对象来调用(不直接操作dom)，
+        // 所以全程使用的是js的操作，并且将数据放在统一的地方，所以data存储数据,在jQuery中是最高效的。
+        // jQuery渲染过程：data->jquery ->dom上添加数据 ->显示页面中
+
+
+        // 思考：为什么在jQuery中不提倡(data())操作dom。vue中却操作dom？
+              // 为什么jQuery中不提倡使用行间，vue中的为什么大都写在行间？
+        // vue：设计思想：省去dom操作,
+            //  在vue的内部做了很多dom操作，比如虚拟dom,最终也是操作dom。
+            // vue之所以操作dom而且还效率高是因为 vue中有diff算法，最小程度上操作dom,vue都是在框架内部自己进行dom操作
+            // 我们在外界只能操作视图和数据
+            // 所以在vue中，将数据写在行间是为了符合vue的结构语法。
+        
+    </script>
+
+
+
+
+</body>
+
+</html>
