@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        p{
+            border: 1px solid #000;
+        }
+        .demo{
+            width: 200px;
+        }
+        ul{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo">
+        <p>Rose</p>
+        <ul>
+            <li>nba状元</li>
+            <li>最年轻的mvp</li>
+            <li>涅槃重生</li>
+        </ul>
+    </div>
+    <script src="../jquery.js"></script>
+    <script>
+        // $('.demo').mouseenter(function(){
+        //     $('ul').show(300,'swing');
+        // })
+        // $('.demo').mouseleave(function(){
+        //     $('ul').hide(500,'linear');
+        // })
+
+        // $('p').on('click',function(){
+        //     $(this).next().toggle(300,'swing');
+        // })
+        // 当show()执行之后，设置display属性的 会使用设置的，没设置的回使用默认的
+        //执行show()显示的时候 width, height,opacity,padding,margin这些是一起慢慢变化的
+        // 执行hide()的时候也是这样的 慢慢递减
+
+        // .fadeln .fadeout .fadeToggle .fedeTo() 参数：null或(duration,[opactiy],easing,callback)
+
+        // $('p').on('click',function(){
+        //     if($(this).next().css('display') == 'none'){
+        //         $(this).next().fadeIn(300)
+        //     }else{
+        //         $(this).next().fadeOut(300)
+        //     }
+        // })
+
+
+    
+
+    
+    </script>
+</body>
+</html>

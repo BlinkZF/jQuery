@@ -78,6 +78,34 @@
     jQuery.prototype.end = function () {
         return this.prevObject;
     }
+
+    // 自定义事件
+    jQuery.prototype.myOn = function (type, handle) {
+        for (var i = 0; i < this.length; i++) {
+            if (!this[i].cacheEvent) {
+                this[i].cacheEvent = {}
+            }
+            if (!this[i].cacheEvent[type]) {
+                this[i].cacheEvent[type] = [handle]
+                //这里使用数组来存储自定义事件是因为：同一个自定义事件绑定多次，也要能执行多次,
+            } else {
+                this[i].cacheEvent[type].push(handle);
+            }
+        }
+    }
+    jQuery.prototype.myTrigger = function (type) {
+        var params = arguments.length > 1 ? [].slice().call(arguments, 1) : []; 
+        // 利用slice方法将第一位之后的所有参数截取到一个数组中
+        var self = this;
+        for(var i = 0;i<this.length;i++){
+            if(this[i].cacheEvent[type]){
+                this[i].cacheEvent[type].forEach(function(ele,index){
+                    ele.apply(self,params) //因为这里面的this是window,所以在外部先将this存起来
+                })
+            }
+        }
+    }
+
     // 让jQuery.prototype.init原型 执行jQuery原型
     jQuery.prototype.init.prototype = jQuery.prototype;
     window.$ = window.jQuery = jQuery

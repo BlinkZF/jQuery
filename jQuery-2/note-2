@@ -25,3 +25,48 @@ jquery事件操作
 小知识：jquery取消默认事件 return false;
         target：'_blank' 点击打开新的窗口
     .one() 绑定之后只执行一次，一次性事件
+
+    off()解绑事件,不传参数的时候，会将所有的事件都解绑了，
+    一个参数：输入参数的时候，就删除指定的功能
+    两个参数：(事件类型，函数名称)
+
+    解除绑定的时候，事件绑定在谁上面解绑的时候就将解绑方法用在谁身上，但是最稳妥的办法是绑定事件的时候怎样写，解除绑定的时候就怎样写(ul->li)
+
+    trigger() 对已有的事件进行主动出发事件
+    trigger('click',[1,2,3,4]) 第一个参数是事件类型，第二个参数可以传递事件的参数(数组)
+
+    自定义事件
+    trigger()触发的早定义事件里面的参数和以前的都是一样的
+
+    trigger()原理
+
+    hover() 方法规定当鼠标指针悬停在被选元素上时要运行的两个函数,方法触发 mouseenter 和 mouseleave 事件。
+
+    mousewheel()鼠标滑轮事件
+    keydown() 当按钮被按下时，发生 keydown 事件。
+
+兼容的时间对象
+    e.pageX() 获取鼠标的位置,pageX() 属性是鼠标指针的位置，相对于文档的左边缘。
+    e.clientX() clientX 事件属性返回当事件被触发时鼠标指针向对于浏览器页面（或客户区）的水平坐标。客户区指的是当前窗口。
+    e.which() 判断鼠标键盘是那个键
+    e.button() 监听鼠标的左右键
+
+    e.preventDefault()阻止默认事件
+
+    e.stopPropagetion()阻止冒泡事件
+
+    retrurn false 兼容阻止事件冒泡和默认事件
+
+jquery实例方法--动画
+动画相关方法
+    show()  hide() toggle() 参数:null或者(duration,easing,callback) 
+    第一个参数决定的是动画执行的时间，第二个参数是显示的方式变化的线性函数
+
+    .fadeln(淡入) .fadeout(淡出) .fadeToggle .fedeTo(渐进到什么形态) 参数：null或(duration,[opactiy](fadeTo专用),easing,callback)
+    上面这几个函数执行的时候，只改变的是opacity，
+    后面的callback是当执行到什么状态之后才会触发
+
+    slideDown()卷入 slideUp()卷出 slideToggle() 参数：null 或 (duration,easing,callback)
+    主要是高度变化
+
+动画一般使用的搭配方式是：css3+js
