@@ -39,14 +39,31 @@ jQuery工具方法
     $.trim()清除空格
     js原生中str.trim()字符串去掉前后空格  返回的是字符串
 
-    $.proxy()改变this指向  类似于原生中的bind
+    $.proxy()改变this指向  类似于原生中的bind()
     两个参数：$.proxy(show,obj) 第一个参数是准备改变this的原始方法，第二个参数是要改变的目标this
     这里要注意  使用$.proxy()这个方法没有改变原来方法中的this，而是形成了一个新的方法，所以我们需要接收一下这个新的方法
+    把目标方法里的this改变一下，然后形成一个新的方法返回，然后来执行
     var showProxy = $.proxy(show,obj);
-    $.noConflict()防止冲突
+
+    $.noConflict()防止冲突  防止$变量命名冲突
+    var $c = $.noConflict()  使用之后，$就变化成为$c了
 
     $.each()循环map...
+    $.each() 为了处理数组而存在的
 
-    $.parseJSON()严格json字符串转换成对象-原生JSON.parse()
+    $.map()针对数组的每一位进行操作
 
-    $.makeArray()类数组转化成数组
+    $.parseJSON()严格json字符串转换成json对象 ==  原生JSON.parse() 把一个符合json格式的字符串转换成json
+    注意：转化的时候一定要主要格式的问题
+    json格式：
+    var json = {
+        "a":123,
+        "b":234,
+        "c":345,
+    }
+    这里的属性名必须是双引号
+
+    JSON.stringify(obj) 将json对象转化成json字符串
+
+    $.makeArray()类数组转化成数组 生成一个新的数组，不改变原数组
+    总结：当传递两个参数的时候，会将第一个参数放到第二个参数中去,第二个是什么可行，最后返回的就是什么类型

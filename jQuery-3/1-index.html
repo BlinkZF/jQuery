@@ -1,24 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
-   
+    <div class="demo" style="width:100px;height:100px;background:orange"></div>
     <script src="../jquery.js"></script>
     <script>
-    function show() { 
-        console.log(this)
-    }
-    var obj = {
-        name:'deng',
-        age:123
-    }    
-    
+        // function show() { 
+        //     console.log(this)
+        // }
+        // var obj = {
+        //     name:'deng',
+        //     age:123
+        // }    
+        // var showProxy = $.proxy(show,obj);
+        // showProxy()
+
+        // 单对象式编程
+        // var list = {
+        //     init:function(){
+        //         this.ms = 123;
+        //         this.dom = document.getElementsByClassName('demo')[0];
+        //         this.bindEvent();
+        //     },
+        //     bindEvent:function(){
+        //         this.dom.onclick = $.proxy(this.show,this); //在这里一定要注意this的问题
+        //     },
+        //     show:function(){
+        //         console.log(this.produseMs(this.ms));
+        //     },
+        //     produseMs:function(ms){
+        //         return ms + 111;
+        //     },
+
+        // }
+        // list.init();
+        // var arr = [1, 2, 3, 4]
+        // $.each(arr,function(index,ele){
+        //     console.log(ele);
+        // })
+
+        // var a = $.map(arr, function (index, ele) {
+        //     return ele;
+        // })
+        // console.log(a);
+
+        // var json = '{"a": 123,"b": 234,"c": 345}';
+        // var a = $.parseJSON(json)
+        // var b = JSON.stringify(a);
+        // console.log(a);
+        // console.log(b);
+
+        //类数组
+        var obj = {
+            0:"a",
+            1:"b",
+            2:"c",
+            length:3,
+            slice:Array.prototype.slice
+        }
+        var arr = [1,2,3,4]
+        // 三种转换方法
+        // var arr = $.makeArray(obj)
+        // console.log(arr);  
+        // var arr1 = [].slice.call(obj,0);
+        // console.log(arr1); 
+        // var arr2 = obj.slice(0);
+        // console.log(arr2);
+
+        // 两个参数
+        // var m = $.makeArray('d',obj); //第一个参数，第二个参数是类数组 执行之后将第一个参数添加到类数组中
+        // console.log(m);
+
+        // var n = $.makeArray(5,arr); //第一个参数放入arr中
+        // console.log(n);
+
+        // var e = $.makeArray(obj,arr)  // 将第一个类数组放入数组中
+        // console.log(e);
+
         
     </script>
 </body>
+
 </html>
