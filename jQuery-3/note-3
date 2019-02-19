@@ -6,7 +6,7 @@ jquery实例方法-位置图形
     .position() 方法返回匹配元素相对于父元素的位置（偏移）。该方法返回的对象包含两个整型属性：top 和 left，以像素计
     当没有父级的时候，相对于文档进行定位  取的距离是相对于谁定位的距离
 
-    .scrollTop() .scrollLeft()获取滚动条的距离
+    .scrollTop() .scrollLeft()获取滚动调滚动的距离
     可以进行赋值 传值的时候要穿数值，不能穿字符串
     
     .width() 返回宽度 返回的是number
@@ -26,7 +26,7 @@ jQuery实例方法-遍历索引
 
 jQuery工具方法
     $.type()判断括号中的数据是什么 
-    原生typeof() 判断里面的数据是什么类型   返回值的类型（undefined，String，Number，boolea，object(null，Array),Function）
+    原生typeof() 判断里面的数据是什么类型   返回值的类型（undefined，String，Number，boolean，object(null，Array),Function）
 
     在$.type()中 自定义的对象和对象字面量返回的都是object
     $.type(new Person());
@@ -66,4 +66,4 @@ jQuery工具方法
     JSON.stringify(obj) 将json对象转化成json字符串
 
     $.makeArray()类数组转化成数组 生成一个新的数组，不改变原数组
-    总结：当传递两个参数的时候，会将第一个参数放到第二个参数中去,第二个是什么可行，最后返回的就是什么类型
+    总结：当传递两个参数的时候，会将第一个参数放到第二个参数中去,第二个是什么类型，最后返回的就是什么类型
