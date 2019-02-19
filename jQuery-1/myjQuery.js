@@ -105,6 +105,119 @@
             }
         }
     }
+    // 入队了
+    jQuery.prototype.myQueue = function () {  
+        var queueObj = this;
+        var queueName = arguments[0] || 'fx' //这里的fx是animate自己独有的名称队列
+        var addFunc = arguments[1] || null;
+        var len = arguments.length;
+        // 根据传入参数的多少判断是取队列还是添加队列
+        if(len == 1){
+            return queueObj[0][queueName];
+        }
+        // queueObj这个对象中记录了一个dom，将队列存在dom身上
+        // 官方queue() 内部用到了一个全局构造函数data  通过data创建全局对象，根据这个对象进行全局存储
+        queueObj[0][queueName] == undefined ? queueObj[0][queueName] = [addFunc] : queueObj[0][queueName].push(addFunc);
+        return this;
+    }
+    // 出队列
+    jQuery.prototype.myDequeue = function () { 
+        //理解：当外部函数调用函数的时候，没有调用源，为了保证this不变(依旧是调用myDequeue()的)，使用这种将this保存起来的方法
+        var self = this; 
+        var queueName = arguments[0] || 'fx';
+        var queueArr = this.myQueue(queueName);
+        var currFunc = queueArr.shift();
+        if(currFunc == undefined){
+            return;
+        }
+        // 这里是一个递归函数,每当currFunc有值的时候，就在调用myDequeue,直到queueArr中的参数为空，这时currFun也就为空 这时递归就停止
+        var next = function () { 
+            self.myDequeue(queueName)
+        }
+        currFunc(next);
+        return this;
+    }
+
+    jQuery.prototype.myDelay = function (duration) {  
+        var queueArr = this[0]['fx'];
+        queueArr.push(function (next) {  
+            setTimeout(function () {  
+                next();
+            },duration)
+        })
+        return this;
+    }
+
+    jQuery.prototype.myAnimate = function (json,callback) {  
+        var len = this.length;
+        var self = this;
+        // 最后添加到队列里的内容函数
+        var baseFunc = function (next) {  
+            var times = 0 //参考数值
+            for(var i = 0;i<len;i++){
+                startMove(self[i],json,function () {  
+                    times++;
+                    if(times = len){
+                        callback && callback()
+                        next();
+                    }
+                })
+            }
+        }
+
+        // 入队操作
+        this.myQueue('fx',baseFunc);
+
+        if(this.myQueue('fx').length == 1){
+            this.myDequeue('fx');
+        }
+        function getStyle(obj,attr) {
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            }else{
+                return window.getComputedStyle(obj,false)[attr];
+            }
+        }
+        function startMove(obj,json,callback) {  
+            clearInterval(obj.timer);
+            var iSpeed;
+            var iCur;
+            var name;
+            obj.timer = setInterval(function () {  
+                var bStop = true;
+                for(var attr in json){
+                    if(attr === 'opacity'){
+                        name = attr;
+                        iCur = parseFloat(getStyle(obj,attr))*100; 
+                    }else{
+                        iCur = parseInt(getStyle(obj,attr));
+                    }
+                    iSpeed = (json[attr]-iCur)/7;
+                    if(iSpeed>0){
+                        iSpeed = Math.ceil(iSpeed);
+                    }else{
+                        iSpeed = Math.floor(iSpeed);
+                    }
+                    if(attr === 'opacity'){
+                        obj.style.opacity = (iCur + iSpeed) / 100;
+                    }else{
+                        obj.style[attr] = iCur + iSpeed +'px';
+                    }
+                    if(json[attr] - iCur !== 0){
+                        bStop = false
+                    }
+                }
+                if(bStop){
+                    clearInterval(obj.timer);
+                    callback()
+                }
+            },30)
+        }
+        return this;
+    }
+
+
+
 
     // 让jQuery.prototype.init原型 执行jQuery原型
     jQuery.prototype.init.prototype = jQuery.prototype;

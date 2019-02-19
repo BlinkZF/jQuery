@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="demo"></div>
+    <!-- <script src="../jquery.js"></script> -->
+    <script src="../jQuery-1/myjQuery.js"></script>
+    <script>
+        // animate:原理剖析
+        
+        // $('.demo')
+        //     .css({position:'absolute',left:0,top:0,width:100,height:100,backgroundColor:'red'})
+        //     .on('click',function () {  
+        //         $(this)
+        //             .animate({width:120,height:120,left:100,top:100},1000)
+        //             .animate({width:220,height:140,left:200,top:200},1000)
+        //             .animate({width:320,height:160,left:300,top:300},1000)
+        //     })
+
+        // jQuery 
+        // queue() 这个方法创建一个队列，并给这个队列起一个名字
+        // 传递两个参数  type content
+        // 队列在jQuery的内部实际上就是一个数组
+        // 执行queue这个方法之后  jQuery内部会生成一个对象{chain:[]} 
+        // $('.demo')
+        //     .css({position:'absolute',left:0,top:0,width:100,height:100,backgroundColor:'red'})
+        //     .on('click',function () {  
+        //         $(this).dequeue('chain');
+        //     })
+        //     .queue('chain',function (next) {  
+        //     //当入队操作的时候，可以给函数传递一个参数next 当执行第一个的时候，next代表的就是第二个,
+        //     //然后在第一个执行完成执行next() 就相当于调用第二个
+        //     $(this).animate({width:120,height:120,left:100,top:100},1000)
+        //     next();
+        // }).queue('chain',function (next) {
+        //     $(this).animate({width:220,height:140,left:200,top:200},1000)
+        //     next();
+        //   }).queue('chain',function (next) {
+        //     $(this).animate({width:320,height:160,left:300,top:300},1000)
+        //   })
+
+        // 查看队列  传递一个参数，队列名称
+        // console.log($('.demo').queue('chain'));
+
+        // dequeue 出队列 传递参数type(队列名称)
+        // console.log( $('.demo').dequeue('chain'));
+
+        // clearQueue()清空队列
+
+
+        // myAnimate
+        // $('.demo')
+        //     .css({position:'absolute',left:0,top:0,width:100,height:100,backgroundColor:'red'})
+        //     .myAnimate({width:120,height:120,left:100,top:100})
+        //     .myDelay(2000)
+        //     .myAnimate({width:220,height:140,left:200,top:200})
+        //     .myDelay(2000)
+        //     .myAnimate({width:320,height:160,left:300,top:300})
+        //     .myAnimate({left:0,top:0,width:100,height:100});
+    </script>
+</body>
+</html>

@@ -24,6 +24,7 @@ jquery事件操作
 
 小知识：jquery取消默认事件 return false;
         target：'_blank' 点击打开新的窗口
+        
     .one() 绑定之后只执行一次，一次性事件
 
     off()解绑事件,不传参数的时候，会将所有的事件都解绑了，
@@ -70,3 +71,28 @@ jquery实例方法--动画
     主要是高度变化
 
 动画一般使用的搭配方式是：css3+js
+
+    animate动画:
+    animate() 四个参数(target,duration,easing,callback)
+    duration 这个参数当你不传的时候，默认的是400ms，可有传递关键字：slow-600ms fase-200ms
+    内置队列：当写多个animate的时候，系统会将所有的任务存在一个队列中，然后一个一个执行
+
+    stop() 阻止动画。当不传参数的时候只会阻止当前的运动，直接开始下一个运动 
+    传递一个参数：stop(true)当传true的时候，运动直接停止
+    传递两个参数：stop(true,true) 停止当前运动，并且瞬间移动到当前运动的目标点
+
+    finish() 不传参数，执行之后直接到达最终的目标点上
+
+    .delay() 传递一个时间参数，执行delay()之后，会在上一个动画执行完成之后，延迟设置的时间之后再执行下一个动画
+
+    小知识:jQuery.fx.off = true 取消动画中的执行过程，直接瞬移到目标点
+
+    queue() 这个方法创建一个队列，并给这个队列起一个名字
+    传递两个参数  type content
+    队列在jQuery的内部实际上就是一个数组
+    执行queue这个方法之后  jQuery内部会生成一个对象{chain:[]} 
+
+    dequeue 出队列 传递参数type(队列名称)
+    
+    clearQueue()清空队列
+    

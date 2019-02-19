@@ -1,0 +1,52 @@
+jquery实例方法-位置图形
+位置坐标图形大小相关方法
+    .offset() 返回第一个匹配元素的偏移坐标。该方法返回的对象包含两个整型属性：top 和 left，以像素计。此方法只对可见元素有效。
+    使用：当只考虑选中元素只相对于文档的坐标的时候可以使用这个，这个不考虑父级有没有定位。永远参照文档定位
+
+    .position() 方法返回匹配元素相对于父元素的位置（偏移）。该方法返回的对象包含两个整型属性：top 和 left，以像素计
+    当没有父级的时候，相对于文档进行定位  取的距离是相对于谁定位的距离
+
+    .scrollTop() .scrollLeft()获取滚动条的距离
+    可以进行赋值 传值的时候要穿数值，不能穿字符串
+    
+    .width() 返回宽度 返回的是number
+    .height()  返回高度---
+    .innerWith()  获取宽度+padding
+    .outerWidth() 获取宽度+padding+border 当传参数true的时候，获取的是宽度+padding+margin+border
+    .innerHeight() 获取高度+padding
+    .outerHeight() 获取高度+padding+border 当传参数true的时候，获取的是高度+padding+margin+border
+
+jQuery实例方法-遍历索引
+    .each()
+    .children() 方法返回返回被选元素的所有直接子元素
+    .index() 方法返回指定元素相对于其他指定元素的 index 位置。如果未找到元素，index() 将返回 -1。
+    当传入参数(’span‘)的时候，返回的是选中的span标签在兄弟中排行第几
+
+实例方法(选择出一个元素，操作元素，称之为实例方法)
+
+jQuery工具方法
+    $.type()判断括号中的数据是什么 
+    原生typeof() 判断里面的数据是什么类型   返回值的类型（undefined，String，Number，boolea，object(null，Array),Function）
+
+    在$.type()中 自定义的对象和对象字面量返回的都是object
+    $.type(new Person());
+    function Person(){}
+    $.type({}); 
+
+    $.isArray() $.isFunction() $.isWindow()...
+    这里的isFunction()要注意一下 当为立即执行函数的时候 返回的false
+
+    $.trim()清除空格
+    js原生中str.trim()字符串去掉前后空格  返回的是字符串
+
+    $.proxy()改变this指向  类似于原生中的bind
+    两个参数：$.proxy(show,obj) 第一个参数是准备改变this的原始方法，第二个参数是要改变的目标this
+    这里要注意  使用$.proxy()这个方法没有改变原来方法中的this，而是形成了一个新的方法，所以我们需要接收一下这个新的方法
+    var showProxy = $.proxy(show,obj);
+    $.noConflict()防止冲突
+
+    $.each()循环map...
+
+    $.parseJSON()严格json字符串转换成对象-原生JSON.parse()
+
+    $.makeArray()类数组转化成数组

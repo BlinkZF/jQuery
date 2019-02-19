@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>热点排名</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        .tpl {
+            display: none;
+        }
+
+        .clearF::after {
+            content: '';
+            display: block;
+            clear: both;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            width: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto 0px;
+            /*上 左右 下 */
+            /* overflow: hidden; */
+        }
+
+        .wrapper .head {
+            width: 100%;
+            height: 30px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .wrapper .head .change,
+        .wrapper .head .hot {
+            line-height: 30px;
+            padding: 0px 5px;
+            float: left;
+        }
+
+        .wrapper .head .hot {
+            font-weight: 900;
+        }
+
+        .wrapper .head .change {
+            float: right;
+            color: #08f;
+            cursor: pointer;
+        }
+
+        .wrapper .content {
+            margin-bottom: 10px;
+        }
+
+        .wrapper .content ul {
+            padding: 0px 5px;
+        }
+
+        .wrapper .content ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .wrapper .content .ranking {
+            width: 20px;
+            height: 20px;
+            color: #ffffff;
+            /* background: #0bf; */
+            text-align: center;
+            display: inline-block;
+        }
+
+        .wrapper .content .number {
+            float: right;
+        }
+
+        .wrapper .content .number::after {
+            content: "";
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-size: 100% 100%;
+        }
+
+        .wrapper .content .number.top::after {
+            background-image: url('./top.png');
+        }
+
+        .wrapper .content .number.bottom::after {
+            background-image: url('./bottom.png');
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="head">
+            <span class="hot">热点排名</span>
+            <span class="change">换一换</span>
+        </div>
+        <div class="content">
+            <ul class="bod">
+                <li class="tpl">
+                    <span class="ranking">1</span>
+                    <span class="name">张凡</span>
+                    <span class="number">9527</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../jquery.js"></script>
+    <script src="./serverData.js"></script>
+    <script>
+        (function () {
+            // 初始化变量
+            var $Wrapper = $('.wrapper');
+            var $Content = $Wrapper.find('.content')
+            var colorArr = ['#f54545', '#ff8547', '#ffac38'];
+            var curPage = 0; //代表当前页数
+            var dataNum = Math.ceil(data.length / 10)
+            $('.bod').hide();
+            function bindEvent() {
+                $('.change').on('click', function () {
+                    curPage = ++curPage % dataNum;
+                    console.log(curPage);
+                    randerPage(data);
+                })
+                
+            }
+            function randerPage(data) {
+                // 清空之前的值 remove detach empty(清空所有的子元素)
+                $('.bod').hide().find('.Item').remove()
+                // 根据数据渲染页面
+                var len = data.length;
+                var lens = len - curPage * 10 > 10 ? 10 : len - curPage * 10;
+                for (var i = 0; i < lens; i++) {
+                    var oClone = $Content.find('.tpl').clone().removeClass('tpl').addClass('Item');
+                    var ele = data[i + curPage * 10]
+                    oClone.find('span').eq(0)
+                        .text(i + curPage * 10 + 1)
+                        .css('backgroundColor', curPage == 0 && i <= 2 ? colorArr[curPage + i] : '#0bf')
+                        .next()
+                        .text(ele.title)
+                        .next()
+                        .text(ele.search)
+                        .addClass(ele.search > ele.hisSearch ? 'top' : 'bottom');
+                    $('.bod').append(oClone);
+                }
+                $('.bod').fadeIn()
+            }
+            bindEvent();
+            randerPage(data);
+        })()
+    </script>
+</body>
+
+</html>
